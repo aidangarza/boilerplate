@@ -17,22 +17,7 @@ function logFileHelpers() {
   });
 }
 
-gulp.task('stylus', function (cb) {
-  pump([
-    gulp.src('./src/css/*.styl'),
-    stylus(),
-    rename('main.css'),
-    gulp.dest('dist')
-    ],
-    cb
-  )
-});
-
-gulp.task('watch', function () {
-  gulp.watch('./src/css/*.styl', ['stylus']);
-});
-
-gulp.task('default', function (cb) {
+gulp.task('js', function (cb) {
   pump([
       gulp.src('src/js/index.js'),
       jsImport(),
@@ -47,3 +32,18 @@ gulp.task('default', function (cb) {
     cb
   )
 })
+
+gulp.task('default', function (cb) {
+  pump([
+    gulp.src('./src/css/*.styl'),
+    stylus(),
+    rename('main.css'),
+    gulp.dest('dist')
+    ],
+    cb
+  )
+});
+
+gulp.task('watch', function () {
+  gulp.watch('./src/css/*.styl', ['default']);
+});
